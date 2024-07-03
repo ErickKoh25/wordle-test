@@ -128,6 +128,7 @@ export default function Home() {
       />
       <Qwerty
         currentWord={currentWord}
+        currentAttempt={currentAttempt}
         attempts={attempts}
         onClick={onKeyUp}
       />

@@ -5,22 +5,24 @@ import Cell from "./Cell";
 
 interface Props {
   currentWord: String;
+  currentAttempt: number;
   attempts: Array<String>;
   onClick: Function;
 }
 
-const Qwerty = ({ currentWord, attempts, onClick = () => {} }: Props) => {
-  const guessed = attempts.map((attempt, i) =>
+const Qwerty = ({ currentWord, currentAttempt, attempts, onClick = () => {} }: Props) => {
+const newArray = attempts.filter((item, i) => i !== currentAttempt );
+  const guessed = newArray.map((attempt, i) =>
     new Array(5).fill(0).map((cell, c) => {
       return attempt[c] == currentWord[c] ? currentWord[c] : "";
     })
   );
-  const includes = attempts.map((attempt, i) =>
+  const includes = newArray.map((attempt, i) =>
     new Array(5).fill(0).map((cell, c) => {
       return currentWord.includes(attempt[c]) ? attempt[c] : "";
     })
   );
-  const noMatch = attempts.map((attempt, i) =>
+  const noMatch = newArray.map((attempt, i) =>
     new Array(5).fill(0).map((cell, c) => {
       return !currentWord.includes(attempt[c]) ? attempt[c] : "";
     })
@@ -65,7 +67,8 @@ const Qwerty = ({ currentWord, attempts, onClick = () => {} }: Props) => {
             {i == 2 && (
               <Cell
                 key={`backspace`}
-                letter={<PiBackspaceLight />}
+                letter={'Backspace'}
+                icon={<PiBackspaceLight />}
                 status="empty"
                 customClass="keys-width px-6 cursor-pointer text-base dark:bg-[#565F7E]"
                 onClick={onClick}
