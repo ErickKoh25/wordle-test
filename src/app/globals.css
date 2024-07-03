@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,19 +16,43 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+body {
+  @apply font-roboto;
+}
+.custom-dark {
+  @apply bg-custom-dark;
+}
+
+.cell {
+  @apply font-semibold border border-black border-solid rounded inline-flex mx-1 text-3xl justify-center items-center;
+}
+.grid-width {
+  @apply w-cell h-cell;
+}
+.keys-width {
+  @apply min-w-keys-cell min-h-keys-cell;
+}
+.guessed {
+  @apply border-0 bg-guessed-cell text-white;
+}
+.includes {
+  @apply border-0 bg-includes-cell text-white;
+}
+.no-match {
+  @apply border-0 bg-no-match-cell text-white;
+}
+.empty {
+  @apply border-0 bg-empty-cell;
+}
+
+.qwerty {
+  @apply grid gap-2 bg-qwerty w-5/12 rounded-lg my-6 py-6;
+}
+.play-button, .confirm-button {
+  @apply bg-guessed-cell w-68 text-white font-semibold text-3xl h-12;
 }
